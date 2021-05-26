@@ -1,0 +1,32 @@
+<!-- Card -->
+<mdb-card>
+    <!--Card content-->
+    <mdb-card-body>
+
+        <p class="h4 mb-4 text-center">File Upload</p>
+
+        <!-- Form Start -->
+        <form class="text-left  p-5" #fileForm="ngForm" (ngSubmit)="uploadFile($event, fileForm)">
+
+            <!-- File Input -->
+            <label class="form-label font-weight-bolder" for="customFile">
+                Select a File to Upload :
+            </label>
+            <input required type="file" accept=".csv, .xlsx" class="form-control mb-4" id="customFile" name="userFile"
+                ngModel />
+            <label class="form-label grey-text" for="customFile">
+                (.csv and .xlsx Formats only)
+            </label>
+
+            <!-- Upload Button -->
+            <button [disabled]="fileForm.invalid" mdbBtn color="success" block="true" class="my-4" type="submit">Upload File</button>
+
+        </form>
+        <!-- Form End -->
+
+    </mdb-card-body>
+</mdb-card>
+<!-- Card End -->
+
+<!-- File Upload Notifier -->
+<notifier-container></notifier-container>

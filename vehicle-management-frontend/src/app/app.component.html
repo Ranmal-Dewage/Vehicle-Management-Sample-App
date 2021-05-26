@@ -1,0 +1,42 @@
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo" [containerInside]="false">
+  <mdb-navbar-brand>
+    <a class="logo navbar-brand" href="/">
+      <img src="../assets/Logo.png" height="30" alt="" loading="lazy" />&nbsp;Vehicle Management System&nbsp;
+    </a>
+  </mdb-navbar-brand>
+  <!-- Links Start-->
+  <links>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item waves-light" mdbWavesEffect>
+        <a class="nav-link" routerLink="/">
+          <mdb-icon fas icon="file-upload"></mdb-icon>File Upload
+        </a>
+      </li>
+      <li class="nav-item waves-light" mdbWavesEffect>
+        <a class="nav-link" routerLink="/details">
+          <mdb-icon fas icon="info-circle"></mdb-icon>Vehicle Deatils
+        </a>
+      </li>
+      <li class="nav-item waves-light" mdbWavesEffect>
+        <a class="nav-link" routerLink="/export">
+          <mdb-icon fas icon="file-download"></mdb-icon>File Export
+        </a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav nav-flex-icons">
+      <li class="nav-item waves-light" mdbWavesEffect>
+        <a class="nav-link">
+          <mdb-icon fas icon="user"></mdb-icon>Ranmal Dewage
+        </a>
+      </li>
+    </ul>
+  </links>
+  <!-- Links End -->
+</mdb-navbar>
+
+<!-- Main -->
+<div class="container center-div-horizontally-vertically">
+  <router-outlet></router-outlet>
+</div>
+<!-- Main End -->
