@@ -5,8 +5,8 @@ Vehicle Detail Management System with Excel and CSV file upload capabilities and
 * Enter your **PostgreSQL** **username** and **password** inside **vehicle-management-backend/src/ormconfig.ts** file and create a **database** called **vehicle_db**.
 * Redis must be active and running on **127.0.0.1:6379** (localhost port 6379).
 * Then go inside the **vehicle-management-backend folder** and run following commands;
-* - npm install
-* - npm run start:dev
+ - npm install
+ - npm run start:dev
 * After that go inside the **vehicle-management-frontend** folder and run following commands;
 - npm install
 - ng serve
