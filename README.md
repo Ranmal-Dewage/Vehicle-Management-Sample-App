@@ -12,6 +12,6 @@ Vehicle Detail Management System with Excel and CSV file upload capabilities and
     * ng serve
 * If you are getting **Postgres date/time out of range** error, run the folowing query;
  ```diff
-    - ALTER DATABASE vehicle_db SET datestyle TO "ISO, MDY".
+ - ALTER DATABASE vehicle_db SET datestyle TO "ISO, MDY".
  ```
     
