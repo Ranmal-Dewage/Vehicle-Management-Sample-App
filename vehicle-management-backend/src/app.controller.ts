@@ -32,7 +32,7 @@ export class AppController {
         throw { message: "Invalid File Format" };
       }
 
-      this.fileProducer.sendFile(file);
+      await this.fileProducer.sendFile(file);
       return { "success": true };
 
     } catch (error) {

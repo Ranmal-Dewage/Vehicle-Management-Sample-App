@@ -1,4 +1,3 @@
-import { BadRequestException } from '@nestjs/common';
 import * as path from 'path';
 
 export class FileHelper {

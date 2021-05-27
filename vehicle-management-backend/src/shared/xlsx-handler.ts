@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import { CreateVehicleDto } from 'src/dto/create-vehicle.dto';
 import * as xlsx from 'xlsx';
 
@@ -7,10 +8,11 @@ export class XLSXHandler {
 
         const workbook = xlsx.readFile(filePath);
 
-        let worksheets = await XLSXHandler.getWorksheetData(workbook);
+        let worksheets = await this.getWorksheetData(workbook);
 
-        const createVehicleDtoArray = await XLSXHandler.convertToDBFormat(worksheets);
-
+        const createVehicleDtoArray = await this.convertToDBFormat(worksheets);
+        fs.unlinkSync(filePath);
+        
         return new Promise((reslove, reject) => {
             reslove(createVehicleDtoArray);
         })
