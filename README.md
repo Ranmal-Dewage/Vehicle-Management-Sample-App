@@ -1,5 +1,5 @@
 # Vehicle-Management-Sample-App
-Vehicle Detail Management System with Excel and CSV file upload capabilities and basic CRUD operations. Developed using Angular as frontend, Nest JS as backend, PostgreSQL as the database and GraphQL to query data from our backend APIs.
+<p>Vehicle Detail Management System with Excel and CSV file upload capabilities and basic CRUD operations. Developed using Angular as frontend, Nest JS as backend, PostgreSQL as the database and GraphQL to query data from our backend APIs.</p>
 <br/>
 
 ## Architecture Diagram (upto to current progress)
@@ -25,4 +25,3 @@ Vehicle Detail Management System with Excel and CSV file upload capabilities and
  ```diff
  - ALTER DATABASE vehicle_db SET datestyle TO "ISO, MDY".
  ```
-    
