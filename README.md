@@ -36,6 +36,9 @@
     "postgraphile": "npx postgraphile --cors -c \"postgres://<username>:<password>@localhost:5432/vehicle_db\" --watch"
   }
  ```
-
- - ![#1589F0](https://via.placeholder.com/15/1589F0/000000?text=+) `#1589F0`
+<font color="red">
+"scripts": {
+    "postgraphile": "npx postgraphile --cors -c \"postgres://<username>:<password>@localhost:5432/vehicle_db\" --watch"
+  }
+</font>
  
