@@ -29,14 +29,12 @@ export class FileUploadComponent implements OnInit {
         .subscribe(
           (response) => {
 
-            console.log(response);
             form.resetForm()
             this.notifierService.notify("success", "File Uploaded Sucessfully for Processing");
 
           },
           (error: HttpErrorResponse) => {
 
-            console.log(error);
             form.resetForm()
             this.notifierService.notify("error", error.error.message);
 

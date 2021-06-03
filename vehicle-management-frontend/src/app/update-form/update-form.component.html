@@ -2,33 +2,75 @@
     <div class=" modal-body mx-3">
 
         <div class="md-form mb-5">
-            <input type="text" id="firstNameField" class="form-control" [formControl]="subscriptionFormModalFirstName"
-                mdbInput mdbValidate>
+            <input type="text" id="firstNameField" class="form-control" [formControl]="getFirstName" mdbInput
+                mdbValidate>
             <label for="firstNameField">First Name</label>
-            <mdb-error *ngIf="subscriptionFormModalFirstName.invalid && subscriptionFormModalFirstName.touched">
-                Input Invalid
+            <mdb-error *ngIf="getFirstName.invalid && getFirstName.touched">
             </mdb-error>
-            <mdb-success *ngIf="subscriptionFormModalFirstName.valid && subscriptionFormModalFirstName.touched">
-                Input Valid
+            <mdb-success *ngIf="getFirstName.valid && getFirstName.touched">
             </mdb-success>
         </div>
 
         <div class="md-form mb-4">
-            <input type="email" id="emailField" class="form-control" [formControl]="subscriptionFormModalEmail" mdbInput
-                mdbValidate>
-            <label for="emailField">Email</label>
-            <mdb-error *ngIf="subscriptionFormModalEmail.invalid && subscriptionFormModalEmail.touched">
-                Input Invalid
+            <input type="text" id="lastNameField" class="form-control" [formControl]="getLastName" mdbInput mdbValidate>
+            <label for="lastNameField">Last Name</label>
+            <mdb-error *ngIf="getLastName.invalid && getLastName.touched">
             </mdb-error>
-            <mdb-success *ngIf="subscriptionFormModalEmail.valid && subscriptionFormModalEmail.touched">
-                Input Valid
+            <mdb-success *ngIf="getLastName.valid && getLastName.touched">
+            </mdb-success>
+        </div>
+
+        <div class="md-form mb-4">
+            <input type="email" id="emailField" class="form-control" [formControl]="getEmail" mdbInput mdbValidate>
+            <label for="emailField">Email</label>
+            <mdb-error *ngIf="getEmail.invalid && getEmail.touched">
+            </mdb-error>
+            <mdb-success *ngIf="getEmail.valid && getEmail.touched">
+            </mdb-success>
+        </div>
+
+        <div class="md-form mb-4">
+            <input type="text" id="carMakeField" class="form-control" [formControl]="getCarMake" mdbInput mdbValidate>
+            <label for="carMakeField">Car Make</label>
+            <mdb-error *ngIf="getCarMake.invalid && getCarMake.touched">
+            </mdb-error>
+            <mdb-success *ngIf="getCarMake.valid && getCarMake.touched">
+            </mdb-success>
+        </div>
+
+        <div class="md-form mb-4">
+            <input type="text" id="carModelField" class="form-control" [formControl]="getCarModel" mdbInput mdbValidate>
+            <label for="carModelField">Car Model</label>
+            <mdb-error *ngIf="getCarModel.invalid && getCarModel.touched">
+            </mdb-error>
+            <mdb-success *ngIf="getCarModel.valid && getCarModel.touched">
+            </mdb-success>
+        </div>
+
+        <div class="md-form mb-4">
+            <input type="text" id="vinField" class="form-control" [formControl]="getVin" mdbInput mdbValidate>
+            <label for="vinField">VIN Number</label>
+            <mdb-error *ngIf="getVin.invalid && getVin.touched">
+            </mdb-error>
+            <mdb-success *ngIf="getVin.valid && getVin.touched">
+            </mdb-success>
+        </div>
+
+        <div class="md-form mb-4">
+            <input type="text" id="manuDateField" class="form-control" [formControl]="getManufacturedDate" mdbInput
+                mdbValidate>
+            <label for="manuDateField">Manufactured Date</label>
+            <mdb-error *ngIf="getManufacturedDate.invalid && getManufacturedDate.touched">
+            </mdb-error>
+            <mdb-success *ngIf="getManufacturedDate.valid && getManufacturedDate.touched">
             </mdb-success>
         </div>
 
     </div>
 
     <div class="modal-footer d-flex justify-content-center">
-        <button type="submit" mdbBtn color="amber" class="waves-light" mdbWavesEffect>Update
+        <button type="submit" [disabled]="updateForm.invalid" mdbBtn color="amber" class="waves-light"
+            mdbWavesEffect>Update
         </button>
     </div>
 

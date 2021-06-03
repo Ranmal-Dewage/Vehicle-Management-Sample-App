@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http'
 import { NotifierModule } from "angular-notifier";
 import { UpdateFormComponent } from './update-form/update-form.component';
+import { GraphQLModule } from './graphql.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { UpdateFormComponent } from './update-form/update-form.component';
     AppRoutingModule,
     HttpClientModule,
     NotifierModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    GraphQLModule
   ],
   providers: [],
   bootstrap: [AppComponent]
