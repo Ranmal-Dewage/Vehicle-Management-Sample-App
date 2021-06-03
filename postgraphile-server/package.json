@@ -1,0 +1,14 @@
+{
+  "name": "postgraphile-server",
+  "version": "1.0.0",
+  "description": "Postgres and GraphQL Server",
+  "main": "index.js",
+  "scripts": {
+    "postgraphile": "npx postgraphile --cors -c \"postgres://postgres:c6h12o67c2h5oh@localhost:5432/vehicle_db\" --watch"
+  },
+  "author": "Ranmal Dewage",
+  "license": "ISC",
+  "dependencies": {
+    "postgraphile": "^4.12.1"
+  }
+}
