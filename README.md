@@ -8,6 +8,14 @@
 <p  align="center">Figure 1: Architecture Diagram</p>
 <br/>
 
+### Progress Details
+* File upload functionality in Angular.✅
+* Processing uploaded file using Redis Queue in NestJS.✅
+* Write processed file deatils to PostgreSQL database.✅
+* Setup Postgraphile(GraphQL + PostgreSQL) Server pointing to our database.✅
+* Use Apollo Client in Angular to perform Read, Update and Delete functionalities.✅
+* Pagination and Searching Records.📝👨‍💻
+
 ### Deployment Steps
 * Enter your PostgreSQL **username** and **password** inside **vehicle-management-backend/src/ormconfig.ts** file and create a **database** called **vehicle_db**.
 
@@ -30,15 +38,11 @@
     * npm install
     * npm run postgraphile
 
-* I have embedded the Postgraphile run commad inside **scripts : { }** tag of  **package.json file** as below since it is lengthy. Replace **username** and **password** in that command with your PostgreSQL credentails;
+* I have embedded the Postgraphile run commad inside **scripts : { }** tag of  **package.json** file as below since it is lengthy. Replace **username** and **password** in that command with your PostgreSQL credentails;
  ```diff
   "scripts": {
     "postgraphile": "npx postgraphile --cors -c \"postgres://<username>:<password>@localhost:5432/vehicle_db\" --watch"
   }
  ```
-<font color="red">
-"scripts": {
-    "postgraphile": "npx postgraphile --cors -c \"postgres://<username>:<password>@localhost:5432/vehicle_db\" --watch"
-  }
-</font>
+
  
