@@ -42,5 +42,7 @@
               "postgraphile": "npx postgraphile --cors -c \"postgres://<username>:<password>@localhost:5432/vehicle_db\" --watch"
           }
      ```
-    * npm run postgraphile
+ * npm run postgraphile
+     
+
  
