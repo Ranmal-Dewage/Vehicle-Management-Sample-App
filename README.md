@@ -4,7 +4,7 @@
 
 ## Architecture Diagram (upto to current progress)
 
-<img src="https://i.ibb.co/tQ70zNL/VMS-Architectural.jpg" alt="VMS-Architectural" border="0">
+<img src="https://i.ibb.co/ng4cJTs/VMS-Architectural-Diagram.png" alt="VMS-Architectural-Diagram" border="0">
 <p  align="center">Figure 1: Architecture Diagram</p>
 <br/>
 
@@ -32,8 +32,10 @@
 
 * I have embedded the Postgraphile run commad inside **scripts : { }** tag of  **package.json file** as below since it is lengthy. Replace **username** and **password** in that command with your PostgreSQL credentails;
  ```diff
- + "scripts": {
+  "scripts": {
     "postgraphile": "npx postgraphile --cors -c \"postgres://<username>:<password>@localhost:5432/vehicle_db\" --watch"
   }
  ```
+
+ - ![#1589F0](https://via.placeholder.com/15/1589F0/000000?text=+) `#1589F0`
  
