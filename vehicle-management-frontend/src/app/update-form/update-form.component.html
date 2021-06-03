@@ -1,0 +1,35 @@
+<form [formGroup]="updateForm" (ngSubmit)="updateData()">
+    <div class=" modal-body mx-3">
+
+        <div class="md-form mb-5">
+            <input type="text" id="firstNameField" class="form-control" [formControl]="subscriptionFormModalFirstName"
+                mdbInput mdbValidate>
+            <label for="firstNameField">First Name</label>
+            <mdb-error *ngIf="subscriptionFormModalFirstName.invalid && subscriptionFormModalFirstName.touched">
+                Input Invalid
+            </mdb-error>
+            <mdb-success *ngIf="subscriptionFormModalFirstName.valid && subscriptionFormModalFirstName.touched">
+                Input Valid
+            </mdb-success>
+        </div>
+
+        <div class="md-form mb-4">
+            <input type="email" id="emailField" class="form-control" [formControl]="subscriptionFormModalEmail" mdbInput
+                mdbValidate>
+            <label for="emailField">Email</label>
+            <mdb-error *ngIf="subscriptionFormModalEmail.invalid && subscriptionFormModalEmail.touched">
+                Input Invalid
+            </mdb-error>
+            <mdb-success *ngIf="subscriptionFormModalEmail.valid && subscriptionFormModalEmail.touched">
+                Input Valid
+            </mdb-success>
+        </div>
+
+    </div>
+
+    <div class="modal-footer d-flex justify-content-center">
+        <button type="submit" mdbBtn color="amber" class="waves-light" mdbWavesEffect>Update
+        </button>
+    </div>
+
+</form>

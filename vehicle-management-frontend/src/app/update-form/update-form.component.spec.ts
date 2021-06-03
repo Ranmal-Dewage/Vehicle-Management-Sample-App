@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FileExportComponent } from './file-export.component';
+import { UpdateFormComponent } from './update-form.component';
 
-describe('FileExportComponent', () => {
-  let component: FileExportComponent;
-  let fixture: ComponentFixture<FileExportComponent>;
+describe('UpdateFormComponent', () => {
+  let component: UpdateFormComponent;
+  let fixture: ComponentFixture<UpdateFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FileExportComponent ]
+      declarations: [ UpdateFormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FileExportComponent);
+    fixture = TestBed.createComponent(UpdateFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

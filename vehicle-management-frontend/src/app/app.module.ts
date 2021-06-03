@@ -4,20 +4,22 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { VehicleDetailsComponent } from './vehicle-details/vehicle-details.component';
-import { FileExportComponent } from './file-export/file-export.component';
+import { FileImportComponent } from './file-import/file-import.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http'
 import { NotifierModule } from "angular-notifier";
+import { UpdateFormComponent } from './update-form/update-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FileUploadComponent,
     VehicleDetailsComponent,
-    FileExportComponent
+    FileImportComponent,
+    UpdateFormComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,8 @@ import { NotifierModule } from "angular-notifier";
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    NotifierModule
+    NotifierModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

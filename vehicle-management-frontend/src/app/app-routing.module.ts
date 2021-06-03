@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router'
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { VehicleDetailsComponent } from './vehicle-details/vehicle-details.component';
-import { FileExportComponent } from './file-export/file-export.component';
+import { FileImportComponent } from './file-import/file-import.component';
 
 const routes: Routes = [
 
@@ -19,8 +19,8 @@ const routes: Routes = [
   },
   //file download path
   {
-    path: 'export',
-    component: FileExportComponent
+    path: 'import',
+    component: FileImportComponent
   },
 ]
 

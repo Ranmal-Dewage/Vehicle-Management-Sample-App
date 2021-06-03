@@ -1,1 +1,83 @@
-<p>vehicle-details works!</p>
+<!-- Vehicle Details Table -->
+<div class="center-div-horizontally-vertically">
+    <div class="card ">
+        <h3 class="card-header text-center font-weight-bold title-uppercase py-4">Vehicle Details</h3>
+        <div class="card-body">
+            <div id="table" class="table-editable">
+                <span class="table-add float-right mb-3 mr-2">
+                    <a class="text-success" routerLink="/">
+                        <mdb-icon fas icon="plus" size="2x"></mdb-icon>
+                    </a>
+                </span>
+                <!-- Table Content -->
+
+                <table class="table table-striped table-responsive-md btn-table">
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Car Make</th>
+                            <th>Car Model</th>
+                            <th>VIN Number</th>
+                            <th>Manufactured Date</th>
+                            <th>Age of Vehicle</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <!-- iteration goes here -->
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>AA</td>
+                            <td>BB</td>
+                            <td>CC</td>
+                            <td>DD</td>
+                            <td>EE</td>
+                            <td>FF</td>
+                            <td>GG</td>
+                            <td>HH</td>
+                            <td>
+                                <button mdbBtn color="amber" size="sm" data-toggle="modal" data-target="#basicExample"
+                                    (click)="frame.show()" data-toggle="modal" mdbWavesEffect type="button"
+                                    class="m-0">Update</button>
+                            </td>
+                            <td>
+                                <button mdbBtn color="red" size="sm" mdbWavesEffect type="button"
+                                    class="m-0">Delete</button>
+                            </td>
+
+                            <!-- Update Form Modal -->
+                            <div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1"
+                                role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header text-center">
+                                            <h4 class="modal-title w-100 font-weight-bold">Update Data</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                                (click)="frame.hide()">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <!-- Reusable Form Component-->
+                                        <app-update-form [firstName]="'Ranmal Dewage'" [email]="'ranmal@gmail.com'"
+                                            [frame]="frame">
+                                        </app-update-form>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
