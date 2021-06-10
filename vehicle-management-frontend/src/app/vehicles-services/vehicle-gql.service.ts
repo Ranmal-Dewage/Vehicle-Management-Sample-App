@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
-//has to implement the shared date-calculation function inside angular when depoly in docker
-import { DateCalculation } from '../../../../vehicle-management-backend/src/shared/date-calculation';
+import { DateCalculation } from '../../shared/date-calculation';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { VehiclePatch } from '../models/vehicle-patch'

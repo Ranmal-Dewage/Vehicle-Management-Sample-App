@@ -4,8 +4,7 @@ import { VehicleGqlService } from '../vehicles-services/vehicle-gql.service';
 import { NotifierService } from "angular-notifier";
 import { Vehicle } from '../models/vehicle';
 import { VehiclePatch } from '../models/vehicle-patch';
-//has to implement the shared date-calculation function inside angular when depoly in docker
-import { DateCalculation } from '../../../../vehicle-management-backend/src/shared/date-calculation';
+import { DateCalculation } from '../../shared/date-calculation';
 
 @Component({
   selector: 'app-update-form',
