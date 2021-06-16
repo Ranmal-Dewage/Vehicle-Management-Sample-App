@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Apollo, gql } from 'apollo-angular';
-import { DateCalculation } from '../../shared/date-calculation';
+import { Apollo, gql, QueryRef } from 'apollo-angular';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { VehiclePatch } from '../models/vehicle-patch'
 
 @Injectable({
@@ -11,8 +9,8 @@ import { VehiclePatch } from '../models/vehicle-patch'
 export class VehicleGqlService {
 
   private GET_VEHICLES = gql`
-  {
-    allVehicles{
+  query allVehicles($first:Int, $after:Cursor, $before:Cursor, $last:Int){
+    allVehicles(first:$first, after:$after, before:$before, last:$last){
       nodes{
         id
         firstName
@@ -24,6 +22,13 @@ export class VehicleGqlService {
         manufacturedDate
         ageOfVehicle
       }
+      pageInfo{
+        hasNextPage
+        hasPreviousPage
+        endCursor
+        startCursor
+      }
+      totalCount
     }
   }
   `;
@@ -51,25 +56,25 @@ export class VehicleGqlService {
   constructor(private apollo: Apollo) { }
 
 
-  getVehicles(): Observable<any> {
+  getVehicles(first: number, after: string, before: string, last: number): QueryRef<any> {
 
-    return this.apollo.watchQuery({ query: this.GET_VEHICLES })
-      .valueChanges.pipe(
-        map((result: any) => {
-          return result.data.allVehicles.nodes.map((row: any) => {
-            //calculate new age of vehicle when displaying
-            return { ...row, ageOfVehicle: DateCalculation.getAgeOfVehicle(row.manufacturedDate) }
-          });
-        })
-      );
-
+    return this.apollo.watchQuery({
+      query: this.GET_VEHICLES,
+      // pollInterval: 500,
+      variables: {
+        first: first,
+        after: after,
+        before: before,
+        last: last
+      },
+      fetchPolicy: 'network-only'
+    })
   }
 
   deleteVehicle(id: number): Observable<any> {
 
     return this.apollo.mutate({
       mutation: this.DELETE_VEHICLE,
-      refetchQueries: [{ query: this.GET_VEHICLES }],
       variables: {
         id: id
       }
@@ -77,17 +82,20 @@ export class VehicleGqlService {
 
   }
 
-  updateVehicle(id: number, vehiclePatch: VehiclePatch) {
+  updateVehicle(id: number, vehiclePatch: VehiclePatch): Observable<any> {
 
     return this.apollo.mutate({
       mutation: this.UPDATE_VEHICLE,
-      refetchQueries: [{ query: this.GET_VEHICLES }],
       variables: {
         id: id,
         vehiclePatch: vehiclePatch
       }
     });
 
+  }
+
+  getApolloClient() {
+    return this.apollo.client.clearStore()
   }
 
 }

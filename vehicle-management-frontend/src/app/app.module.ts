@@ -13,6 +13,8 @@ import { HttpClientModule } from '@angular/common/http'
 import { NotifierModule } from "angular-notifier";
 import { UpdateFormComponent } from './update-form/update-form.component';
 import { GraphQLModule } from './graphql.module';
+import { PaginationComponent } from './pagination/pagination.component';
+import { SearchItemsComponent } from './search-items/search-items.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { GraphQLModule } from './graphql.module';
     FileUploadComponent,
     VehicleDetailsComponent,
     FileImportComponent,
-    UpdateFormComponent
+    UpdateFormComponent,
+    PaginationComponent,
+    SearchItemsComponent
   ],
   imports: [
     BrowserModule,
