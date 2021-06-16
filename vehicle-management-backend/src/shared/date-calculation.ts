@@ -7,14 +7,17 @@ export class DateCalculation {
         let makeDate: Date = new Date(manufacturedDate);
         let currentDate: Date = new Date();
 
-        let makeMoment: moment.Moment = moment.utc([makeDate.getUTCFullYear(), makeDate.getUTCMonth(), makeDate.getUTCDate()]);
-        let currentMoment: moment.Moment = moment.utc([currentDate.getUTCFullYear(), currentDate.getUTCMonth(), currentDate.getUTCDate()]);
+        let makeMoment: moment.Moment = moment.utc(makeDate.toUTCString());
+        let currentMoment: moment.Moment = moment.utc(currentDate.toUTCString());
 
-        let durationDiff: moment.Duration = moment.duration(currentMoment.diff(makeMoment));
 
-        let years: number = durationDiff.years();
-        let months: number = durationDiff.months();
-        let days: number = durationDiff.days();
+        let years: number = currentMoment.diff(makeMoment, 'years');
+        makeMoment.add(years, 'years');
+
+        let months: number = currentMoment.diff(makeMoment, 'months');
+        makeMoment.add(months, 'months');
+
+        let days: number = currentMoment.diff(makeMoment, 'days');
 
         return `${years} Years ${months} Months and ${days} Days`;
 
