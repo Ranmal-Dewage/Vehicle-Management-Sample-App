@@ -41,6 +41,6 @@
     * I have embedded the Postgraphile run commad inside **scripts : { }** tag of  **package.json** file as below since it is lengthy. Replace **username** and **password** in that command with your PostgreSQL credentails;
 ```diff
 "scripts": {
-   "postgraphile": "npx postgraphile --cors -c \"postgres://<username>:<password>@localhost:5432/vehicle_db\" --watch"
+   "postgraphile": "npx postgraphile --cors -c \"postgres://<username>:<password>@localhost:5432/vehicle_db\" --append-plugins postgraphile-plugin-connection-filter --watch"
 }
 ```
