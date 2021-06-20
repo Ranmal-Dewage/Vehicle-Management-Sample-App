@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -8,13 +8,15 @@ import { NgForm } from '@angular/forms';
 })
 export class SearchItemsComponent implements OnInit {
 
+  @Output("searchItem") searchItem: EventEmitter<{ value: string }> = new EventEmitter<{ value: string }>();
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
   searchItems(form: NgForm): void {
-    console.log(form.value.searchName)
+    this.searchItem.emit({ value: form.value.searchName })
     form.resetForm()
   }
 

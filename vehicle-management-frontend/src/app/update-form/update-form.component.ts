@@ -21,10 +21,9 @@ export class UpdateFormComponent implements OnInit, OnDestroy {
 
   @Input('frame') frame: any;
   @Input('vehicle') vehicle: Vehicle;
-  @Output('parentUpdate') parentUpdate: EventEmitter<any> = new EventEmitter<any>();
+  @Output('parentUpdate') parentUpdate: EventEmitter<{ status: boolean }> = new EventEmitter<{ status: boolean }>();
 
   ngOnInit() {
-    console.log('Update Modal Init......')
     this.updateForm = new FormGroup({
       firstName: new FormControl(this.vehicle.firstName, Validators.required),
       lastName: new FormControl(this.vehicle.lastName, Validators.required),
@@ -37,9 +36,7 @@ export class UpdateFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log('Update Modal Destroy......')
     if (this.updateSubscription) {
-      console.log('Update Modal Destroy updateSub......')
       this.updateSubscription.unsubscribe();
     }
   }

@@ -23,37 +23,42 @@ export class VehicleDetailsComponent implements OnInit, OnDestroy {
   public deleteSubscription: Subscription;
   public initQuery: QueryRef<any>;
   private itemsPerPage: number = 5;
+  public searchText: string;
+  public searchInit: boolean = false;
 
   constructor(private vehicleGqlService: VehicleGqlService, private notifierService: NotifierService) { }
 
 
   ngOnInit(): void {
-    console.log('Parent Init.....')
 
-    this.initQuery = this.vehicleGqlService.getVehicles(this.itemsPerPage, null, null, null);
+    this.searchText = ''
 
-    this.fetchMoreUsingCursor(this.itemsPerPage, null, null, null)
-    console.log("Hit init.....");
+    this.initQuery = this.vehicleGqlService.getVehicles(this.itemsPerPage, null, null, null, this.searchText);
+
+    this.fetchMoreUsingCursor(this.itemsPerPage, null, null, null, this.searchText)
 
   }
 
   ngOnDestroy(): void {
-    console.log('Parent Destroy.....')
+
     if (this.deleteSubscription) {
-      console.log('Parent Destroy delete.....')
       this.deleteSubscription.unsubscribe();
     }
     this.vehicleGqlService.getApolloClient();
+
   }
 
   deleteVehicle(id: number): void {
-    console.log(this.edgeCursorTracker);
+
+    if (this.searchInit) {
+      this.searchInit = false;
+    }
 
     this.deleteSubscription = this.vehicleGqlService.deleteVehicle(id)
       .subscribe(
         (result: any) => {
           this.notifierService.notify("success", "Record with ID:" + id + " Deleted Successfully");
-          this.fetchMoreUsingCursor(this.itemsPerPage, this.edgeCursorTracker.edgeCursorArray[this.edgeCursorTracker.pointer], null, null)
+          this.fetchMoreUsingCursor(this.itemsPerPage, this.edgeCursorTracker.edgeCursorArray[this.edgeCursorTracker.pointer], null, null, this.searchText)
         },
         (error) => {
           this.notifierService.notify("error", "Deletion Error in Record with ID:" + id);
@@ -64,54 +69,57 @@ export class VehicleDetailsComponent implements OnInit, OnDestroy {
 
   updateVehicleEvent(data: any): void {
 
+    if (this.searchInit) {
+      this.searchInit = false;
+    };
+
     if (data.status) {
-      this.fetchMoreUsingCursor(this.itemsPerPage, this.edgeCursorTracker.edgeCursorArray[this.edgeCursorTracker.pointer], null, null)
+      this.fetchMoreUsingCursor(this.itemsPerPage, this.edgeCursorTracker.edgeCursorArray[this.edgeCursorTracker.pointer], null, null, this.searchText)
     }
-    
+
   }
 
   paginationEvent(data: any): void {
 
     if (data.pageEvent === "next") {
 
+      if (this.searchInit) {
+        this.searchInit = false;
+      }
+
       this.edgeCursorTracker.pointer = this.edgeCursorTracker.pointer + 1;
       this.edgeCursorTracker.edgeCursorArray[this.edgeCursorTracker.pointer] = data.after;
 
-      console.log(this.edgeCursorTracker);
-      console.log(data);
-      this.fetchMoreUsingCursor(data.first, data.after, null, null)
+      this.fetchMoreUsingCursor(data.first, data.after, null, null, this.searchText)
 
     }
     else if (data.pageEvent === "previous") {
 
       this.edgeCursorTracker.pointer = this.edgeCursorTracker.pointer - 1;
 
-      console.log(this.edgeCursorTracker);
-      console.log(data);
-      this.fetchMoreUsingCursor(null, null, data.before, data.last);
+      this.fetchMoreUsingCursor(null, null, data.before, data.last, this.searchText);
 
     } else if (data.pageEvent === "deleteLastItemInPage") {
-      console.log("HAHAHAHAH");
+
       this.edgeCursorTracker.pointer = this.edgeCursorTracker.pointer - 1;
       this.edgeCursorTracker.edgeCursorArray.pop();
-      this.fetchMoreUsingCursor(this.itemsPerPage, this.edgeCursorTracker.edgeCursorArray[this.edgeCursorTracker.pointer], null, null);
-      console.log(this.edgeCursorTracker);
+      this.fetchMoreUsingCursor(this.itemsPerPage, this.edgeCursorTracker.edgeCursorArray[this.edgeCursorTracker.pointer], null, null, this.searchText);
+
     }
 
   }
 
-  fetchMoreUsingCursor(first: number, after: string, before: string, last: number): void {
+  fetchMoreUsingCursor(first: number, after: string, before: string, last: number, search: string): void {
 
     this.initQuery.fetchMore({
       variables: {
         first: first,
         after: after,
         before: before,
-        last: last
+        last: last,
+        search: search
       },
       updateQuery: (prev, { fetchMoreResult }) => {
-        console.log(prev)
-        console.log(fetchMoreResult)
         this.vehicles = fetchMoreResult.allVehicles.nodes.map((row: any) => {
           //calculate new age of vehicle when displaying
           return { ...row, ageOfVehicle: DateCalculation.getAgeOfVehicle(row.manufacturedDate) }
@@ -121,6 +129,18 @@ export class VehicleDetailsComponent implements OnInit, OnDestroy {
       }
     });
 
+  }
+
+  searchEvent(data: any): void {
+
+    this.edgeCursorTracker = {
+      pointer: 0,
+      edgeCursorArray: [null]
+    };
+    this.searchText = data.value
+    this.searchInit = true;
+    this.fetchMoreUsingCursor(this.itemsPerPage, null, null, null, this.searchText);
+    
   }
 
 }

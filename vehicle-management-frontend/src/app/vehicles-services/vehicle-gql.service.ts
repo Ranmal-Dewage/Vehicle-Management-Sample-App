@@ -9,8 +9,8 @@ import { VehiclePatch } from '../models/vehicle-patch'
 export class VehicleGqlService {
 
   private GET_VEHICLES = gql`
-  query allVehicles($first:Int, $after:Cursor, $before:Cursor, $last:Int){
-    allVehicles(first:$first, after:$after, before:$before, last:$last){
+  query allVehicles($first:Int, $after:Cursor, $before:Cursor, $last:Int, $search:String){
+    allVehicles(first:$first, after:$after, before:$before, last:$last, orderBy:MANUFACTURED_DATE_ASC, filter:{carMake:{startsWithInsensitive:$search}}){
       nodes{
         id
         firstName
@@ -56,7 +56,7 @@ export class VehicleGqlService {
   constructor(private apollo: Apollo) { }
 
 
-  getVehicles(first: number, after: string, before: string, last: number): QueryRef<any> {
+  getVehicles(first: number, after: string, before: string, last: number, search: string): QueryRef<any> {
 
     return this.apollo.watchQuery({
       query: this.GET_VEHICLES,
@@ -65,7 +65,8 @@ export class VehicleGqlService {
         first: first,
         after: after,
         before: before,
-        last: last
+        last: last,
+        search: search
       },
       fetchPolicy: 'network-only'
     })
@@ -94,7 +95,7 @@ export class VehicleGqlService {
 
   }
 
-  getApolloClient() {
+  getApolloClient(): Promise<any[]> {
     return this.apollo.client.clearStore()
   }
 

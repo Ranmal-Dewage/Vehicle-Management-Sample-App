@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-8">
                         <!-- Search Component -->
-                        <app-search-items></app-search-items>
+                        <app-search-items (searchItem)="searchEvent($event)"></app-search-items>
                     </div>
 
                     <div class="col-4">
@@ -22,6 +22,15 @@
                         </span>
                     </div>
                 </div>
+
+                <div class="row" [style.display]="searchText === ''?'none':'block'">
+                    <h5> Displaying Search Results For :
+                        <mdb-badge pill="true" color="purple darken-2">
+                            {{searchText}}
+                        </mdb-badge>
+                    </h5>
+                </div>
+                <br/>
 
                 <!-- Table Content -->
                 <table class="table table-striped table-responsive-md btn-table">
@@ -82,7 +91,7 @@
 
                 <!-- Pagination Component -->
                 <app-pagination *ngIf="pageInfo && totalCount" [paginationDetails]="pageInfo" [totalItems]="totalCount"
-                    (pagination)="paginationEvent($event)"></app-pagination>
+                    (pagination)="paginationEvent($event)" [searchStatus]="searchInit"></app-pagination>
 
             </div>
         </div>

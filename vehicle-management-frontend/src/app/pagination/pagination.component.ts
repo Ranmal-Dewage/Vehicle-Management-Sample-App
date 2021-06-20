@@ -9,6 +9,7 @@ export class PaginationComponent implements OnInit, OnChanges {
 
   @Input('paginationDetails') paginationDetails: any;
   @Input('totalItems') totalItems: number;
+  @Input('searchStatus') searchStatus: boolean;
   @Output('pagination') pagination: EventEmitter<any> = new EventEmitter<any>()
 
   public totalPages: number
@@ -18,31 +19,37 @@ export class PaginationComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes)
+
     if (changes.totalItems) {
+
       if (changes.totalItems.firstChange) {
         this.pageCalculation()
-        console.log(changes.totalItems.currentValue)
-        console.log("1st Total Pages " + this.totalPages)
-        console.log("1st Current Page " + this.currentPage)
-      } else {
-        this.totalPages = Math.ceil(changes.totalItems.currentValue / this.itemsPerPage);
-        console.log(changes.totalItems.currentValue)
-        if (this.totalPages < this.currentPage) {
-          this.currentPage--;
-          this.pagination.emit({ before: this.paginationDetails.startCursor, last: this.itemsPerPage, pageEvent: "deleteLastItemInPage" })
+      }
+      else {
+
+        if (this.searchStatus) {
+          this.pageCalculation()
+        } else {
+          this.totalPages = Math.ceil(changes.totalItems.currentValue / this.itemsPerPage);
+          if (this.totalPages < this.currentPage) {
+            this.currentPage--;
+            this.pagination.emit({ pageEvent: "deleteLastItemInPage" })
+          }
         }
-        console.log("Total Pages " + this.totalPages)
-        console.log("Current Page " + this.currentPage)
+
+      }
+
+    }
+    else if (changes.paginationDetails) {
+      if (this.searchStatus) {
+        this.pageCalculation()
       }
     }
+
   }
 
   ngOnInit(): void {
-    console.log("Init.....")
   }
-
-
 
   previousPageInvoke() {
 
@@ -70,4 +77,5 @@ export class PaginationComponent implements OnInit, OnChanges {
     this.currentPage = 1;
     this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage)
   }
+  
 }
