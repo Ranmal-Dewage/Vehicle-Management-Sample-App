@@ -4,7 +4,7 @@
 
 ## Architecture Diagram (upto to current progress)
 
-<img src="https://i.ibb.co/ng4cJTs/VMS-Architectural-Diagram.png" alt="VMS-Architectural-Diagram" border="0">
+<img src="https://i.ibb.co/BKkzb0P/VMS-Architectural-Diagram.jpg" alt="VMS-Architectural-Diagram" border="0">
 <p  align="center">Figure 1: Architecture Diagram</p>
 <br/>
 
@@ -15,7 +15,8 @@
 * Setup Postgraphile(GraphQL + PostgreSQL) Server pointing to our database.✅
 * Use Apollo Client in Angular to perform Read, Update and Delete functionalities.✅
 * Pagination and Searching Records.✅
-* Web Socket implementation and Docker deployment.(currently working on....)📝👨‍💻
+* Web Socket implementation.✅
+* Docker deployment.(currently working on....)📝👨‍💻
 
 ### Deployment Steps
 * Enter your PostgreSQL **username** and **password** inside **vehicle-management-backend/src/ormconfig.ts** file and create a **database** called **vehicle_db**.
@@ -44,3 +45,9 @@
    "postgraphile": "npx postgraphile --cors -c \"postgres://<username>:<password>@localhost:5432/vehicle_db\" --append-plugins postgraphile-plugin-connection-filter --watch"
 }
 ```
+
+* After that go inside the **websocket-server** folder and run following commands;
+    * npm install
+    * Enter your PostgreSQL **username** and **password** inside **websocket-server/src/ormconfig.ts** file
+    * npm run start:dev
+
