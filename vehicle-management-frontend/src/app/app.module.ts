@@ -10,11 +10,51 @@ import { VehicleDetailsComponent } from './vehicle-details/vehicle-details.compo
 import { FileImportComponent } from './file-import/file-import.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http'
-import { NotifierModule } from "angular-notifier";
+import { NotifierModule, NotifierOptions } from "angular-notifier";
 import { UpdateFormComponent } from './update-form/update-form.component';
 import { GraphQLModule } from './graphql.module';
 import { PaginationComponent } from './pagination/pagination.component';
 import { SearchItemsComponent } from './search-items/search-items.component';
+
+const customNotifierOptions: NotifierOptions = {
+  position: {
+    horizontal: {
+      position: 'right',
+      distance: 12
+    },
+    vertical: {
+      position: 'bottom',
+      distance: 12
+    }
+  },
+  theme: 'material',
+  behaviour: {
+    autoHide: 10000,
+    onMouseover: 'pauseAutoHide',
+    showDismissButton: true,
+    stacking: 5
+  },
+  animations: {
+    enabled: true,
+    show: {
+      preset: 'slide',
+      speed: 300,
+      easing: 'ease'
+    },
+    hide: {
+      preset: 'fade',
+      speed: 300,
+      easing: 'ease',
+      offset: 50
+    },
+    shift: {
+      speed: 300,
+      easing: 'ease'
+    },
+    overlap: 150
+  }
+};
+
 
 @NgModule({
   declarations: [
@@ -33,7 +73,7 @@ import { SearchItemsComponent } from './search-items/search-items.component';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    NotifierModule,
+    NotifierModule.withConfig(customNotifierOptions),
     ReactiveFormsModule,
     GraphQLModule
   ],

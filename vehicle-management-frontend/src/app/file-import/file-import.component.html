@@ -1,1 +1,42 @@
-<p>file-import works!</p>
+<div class="container center-div-horizontally-vertically">
+    <!-- Card -->
+    <mdb-card>
+        <!--Card Content-->
+        <mdb-card-body>
+
+            <p class="h4 mb-4 text-center">File Import</p>
+
+            <!-- Form Start -->
+            <form #fileImportForm="ngForm" (ngSubmit)="importData(fileImportForm)">
+                <div class=" modal-body mx-3">
+
+                    <div class="md-form mb-5">
+                        <input required pattern="[0-9]*" #ageOfVehicle="ngModel" type="text" id="vehicleAgeField" class="form-control"
+                            name="vehicleAge" ngModel mdbInput mdbValidate>
+                        <label for="vehicleAgeField">Age of Vehicle in Years</label>
+                        <mdb-error *ngIf="ageOfVehicle.invalid && ageOfVehicle.touched">
+                        </mdb-error>
+                        <mdb-success *ngIf="ageOfVehicle.valid && ageOfVehicle.touched">
+                        </mdb-success>
+                        <div class="form-label grey-text">
+                            (download a CSV file with vehicle details greater than or equal to given age)
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="d-flex justify-content-center">
+                    <button type="submit" [disabled]="fileImportForm.invalid" mdbBtn color="secondary"
+                        class="waves-light" mdbWavesEffect>Import
+                    </button>
+                </div>
+
+            </form>
+
+            <!-- Form End -->
+
+        </mdb-card-body>
+        <!--Card Content End-->
+    </mdb-card>
+    <!-- Card End -->
+</div>
