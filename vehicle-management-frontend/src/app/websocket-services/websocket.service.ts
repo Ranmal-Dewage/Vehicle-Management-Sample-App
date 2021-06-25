@@ -7,7 +7,7 @@ import { Observable } from 'rxjs'
 })
 export class WebsocketService {
 
-  private uri: string = "http://localhost:4000";
+  private uri: string = "ws://localhost:4000";
   private socket: io.Socket;
 
   constructor() {
@@ -17,7 +17,7 @@ export class WebsocketService {
   listen(eventName: string): Observable<any> {
 
     return new Observable((observer) => {
-      this.socket.on(eventName, (data) => {
+      this.socket.on(eventName, (data: any) => {
         observer.next(data)
       });
     });

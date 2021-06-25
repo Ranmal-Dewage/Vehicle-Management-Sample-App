@@ -12,7 +12,7 @@ import { WebsocketService } from '../websocket-services/websocket.service';
 export class FileImportComponent implements OnInit, OnDestroy {
 
   private processSubscription: Subscription;
-  private errorSubscrption: Subscription;
+  private errorSubscription: Subscription;
 
   constructor(private websocketService: WebsocketService, private notifierService: NotifierService) { }
 
@@ -20,7 +20,7 @@ export class FileImportComponent implements OnInit, OnDestroy {
     this.processSubscription = this.websocketService.listen("processing").subscribe((data) => {
       this.notifierService.notify("success", data)
     });
-    this.errorSubscrption = this.websocketService.listen("errorProcessing").subscribe((data) => {
+    this.errorSubscription = this.websocketService.listen("errorProcessing").subscribe((data) => {
       this.notifierService.notify("error", data)
     });
 
@@ -30,8 +30,8 @@ export class FileImportComponent implements OnInit, OnDestroy {
     if (this.processSubscription) {
       this.processSubscription.unsubscribe();
     }
-    if (this.errorSubscrption) {
-      this.errorSubscrption.unsubscribe();
+    if (this.errorSubscription) {
+      this.errorSubscription.unsubscribe();
     }
   }
 
