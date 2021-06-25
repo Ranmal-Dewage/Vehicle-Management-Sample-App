@@ -17,12 +17,12 @@ export class FileConsumer {
         if (job.data.file.filename.split('.')[1] === 'xlsx') {
             const createVehicleDtoArray: CreateVehicleDto[] = await XLSXHandler.parseXLSX(job.data.file.path);
             const vehicles: Vehicle[] = await this.sendDataToServiceClass(createVehicleDtoArray);
-            console.log(vehicles)
+            //console.log(vehicles)
         }
         else if (job.data.file.filename.split('.')[1] === 'csv') {
             const createVehicleDtoArray: CreateVehicleDto[] = await CSVHandler.parseCSV(job.data.file.path);
             const vehicles: Vehicle[] = await this.sendDataToServiceClass(createVehicleDtoArray);
-            console.log(vehicles)
+            //console.log(vehicles)
         }
 
     }
