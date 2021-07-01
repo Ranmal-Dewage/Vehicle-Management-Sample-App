@@ -9,10 +9,10 @@ export class PageInfo {
     @Field()
     hasPreviousPage: boolean;
 
-    @Field()
+    @Field({ nullable: true })
     endCursor: string;
 
-    @Field()
+    @Field({ nullable: true })
     startCursor: string;
 
 }

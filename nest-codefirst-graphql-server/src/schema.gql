@@ -5,8 +5,8 @@
 type PageInfo {
   hasNextPage: Boolean!
   hasPreviousPage: Boolean!
-  endCursor: String!
-  startCursor: String!
+  endCursor: String
+  startCursor: String
 }
 
 type Vehicle {
