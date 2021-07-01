@@ -1,0 +1,56 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  endCursor: String!
+  startCursor: String!
+}
+
+type Vehicle {
+  id: Int!
+  firstName: String!
+  lastName: String!
+  email: String!
+  carMake: String!
+  carModel: String!
+  vin: String!
+  manufacturedDate: String!
+  ageOfVehicle: String!
+}
+
+type VehicleConnection {
+  nodes: [Vehicle!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type Query {
+  allVehicles(getVehicleInput: GetVehicleInput): VehicleConnection!
+}
+
+input GetVehicleInput {
+  first: Int
+  after: String
+  before: String
+  last: Int
+  search: String
+}
+
+type Mutation {
+  updateVehicleById(vehiclePatch: VehiclePatch!, id: Int!): Vehicle!
+  deleteVehicleById(id: Int!): Vehicle!
+}
+
+input VehiclePatch {
+  firstName: String
+  lastName: String
+  email: String
+  carMake: String
+  carModel: String
+  vin: String
+  manufacturedDate: String
+  ageOfVehicle: String
+}
