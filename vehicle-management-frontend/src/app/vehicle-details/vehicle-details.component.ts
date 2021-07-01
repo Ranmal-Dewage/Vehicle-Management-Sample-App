@@ -133,14 +133,16 @@ export class VehicleDetailsComponent implements OnInit, OnDestroy {
 
   searchEvent(data: any): void {
 
-    this.edgeCursorTracker = {
-      pointer: 0,
-      edgeCursorArray: [null]
-    };
-    this.searchText = data.value
-    this.searchInit = true;
-    this.fetchMoreUsingCursor(this.itemsPerPage, null, null, null, this.searchText);
-    
+    //escape unwanted characters from search input field
+    this.searchText = escape(data.value)
+
+      this.edgeCursorTracker = {
+        pointer: 0,
+        edgeCursorArray: [null]
+      };
+      this.searchInit = true;
+      this.fetchMoreUsingCursor(this.itemsPerPage, null, null, null, this.searchText);
+
   }
 
 }

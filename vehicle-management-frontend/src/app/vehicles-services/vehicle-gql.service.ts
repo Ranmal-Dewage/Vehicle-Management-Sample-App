@@ -9,8 +9,8 @@ import { VehiclePatch } from '../models/vehicle-patch'
 export class VehicleGqlService {
 
   private GET_VEHICLES = gql`
-  query allVehicles($first:Int, $after:Cursor, $before:Cursor, $last:Int, $search:String){
-    allVehicles(first:$first, after:$after, before:$before, last:$last, orderBy:MANUFACTURED_DATE_ASC, filter:{carMake:{startsWithInsensitive:$search}}){
+  query allVehicles($first:Int, $after:String, $before:String, $last:Int, $search:String){
+    allVehicles(getVehicleInput:{first:$first, after:$after, before:$before, last:$last, search:$search}){
       nodes{
         id
         firstName
@@ -35,20 +35,16 @@ export class VehicleGqlService {
 
   private DELETE_VEHICLE = gql`
   mutation deleteVehicleById($id:Int!){
-    deleteVehicleById(input:{id:$id}){
-      vehicle{
+    deleteVehicleById(id:$id){
         id
-      }
     }
   }
   `;
 
   private UPDATE_VEHICLE = gql`
   mutation updateVehicleById($id:Int!, $vehiclePatch:VehiclePatch!){
-    updateVehicleById(input:{id:$id, vehiclePatch:$vehiclePatch}){
-      vehicle{
+    updateVehicleById(id:$id, vehiclePatch:$vehiclePatch){
         id
-      }
     }
   }
   `;
