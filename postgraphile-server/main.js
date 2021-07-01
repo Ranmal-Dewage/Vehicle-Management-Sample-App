@@ -9,7 +9,7 @@ app.use(cors());
 
 app.use(
     postgraphile(
-        "postgres://postgres:c6h12o67c2h5oh@localhost:5432/vehicle_db",
+        "postgres://<username>:<password>@localhost:5432/vehicle_db",
         "public",
         {
             watchPg: true,
