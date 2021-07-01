@@ -38,13 +38,8 @@
  
 * After that go inside the **postgraphile-server** folder and run following commands;
     * npm install
-    * npm run postgraphile
-    * I have embedded the Postgraphile run commad inside **scripts : { }** tag of  **package.json** file as below since it is lengthy. Replace **username** and **password** in that command with your PostgreSQL credentails;
-```diff
-"scripts": {
-   "postgraphile": "npx postgraphile --cors -c \"postgres://<username>:<password>@localhost:5432/vehicle_db\" --append-plugins postgraphile-plugin-connection-filter --watch"
-}
-```
+    * Enter your PostgreSQL **username** and **password** inside **postgraphile-server/main.js** file
+    * node main.js
 
 * After that go inside the **websocket-server** folder and run following commands;
     * npm install
