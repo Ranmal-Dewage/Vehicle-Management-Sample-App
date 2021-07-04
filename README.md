@@ -4,7 +4,7 @@
 
 ## Architecture Diagram (upto to current progress)
 
-<img src="https://i.ibb.co/BrrnxYM/VMS-Architectural-Diagram.jpg" alt="VMS-Architectural-Diagram" border="0">
+<img src="https://i.ibb.co/ZHVYCdc/VMS-Architectural-Diagram.jpg" alt="VMS-Architectural-Diagram" border="0">
 <p  align="center">Figure 1: Architecture Diagram</p>
 <br/>
 
