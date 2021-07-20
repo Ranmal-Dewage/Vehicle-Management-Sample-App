@@ -1,0 +1,12 @@
+type FileDownload {
+    status: Boolean!
+}
+
+input FileDownloadInput {
+    data: Int!
+    channel: String!
+}
+
+extend type Query {
+    fileDownloadFromAge(input: FileDownloadInput!): FileDownload!
+}
