@@ -1,0 +1,15 @@
+{
+  "name": "websocket-cluster-server",
+  "version": "1.0.0",
+  "description": "Websocket Cluster Server Implementation",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ranmal Dewage",
+  "license": "ISC",
+  "dependencies": {
+    "socketcluster-client": "^16.0.3",
+    "socketcluster-server": "^16.0.2"
+  }
+}
