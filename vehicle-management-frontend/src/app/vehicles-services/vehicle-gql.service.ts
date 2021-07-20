@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Apollo, gql, QueryRef } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { VehiclePatch } from '../models/vehicle-patch'
+import { map } from "rxjs/operators"
 
 @Injectable({
   providedIn: 'root'
@@ -49,7 +50,32 @@ export class VehicleGqlService {
   }
   `;
 
+  private FILE_DOWNLOAD = gql`
+  query fileDownloadFromAge($age:Int!, $channel:String!){
+    fileDownloadFromAge(input:{data:$age,channel:$channel}){
+      status
+  }
+  }
+  `;
+
   constructor(private apollo: Apollo) { }
+
+  triggerFileDownload(age: number, channel: string) {
+
+    return this.apollo.watchQuery({
+      query: this.FILE_DOWNLOAD,
+      variables: {
+        age: age,
+        channel: channel
+      },
+      fetchPolicy: 'network-only'
+    }).valueChanges.pipe(
+      map((result: any) => {
+        return result.data.fileDownloadFromAge.status
+      })
+    );
+
+  }
 
 
   getVehicles(first: number, after: string, before: string, last: number, search: string): QueryRef<any> {

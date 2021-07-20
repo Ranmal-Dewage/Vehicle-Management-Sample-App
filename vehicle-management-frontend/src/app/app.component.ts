@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NotifierService } from 'angular-notifier';
 import { WebsocketService } from './websocket-services/websocket.service';
-import * as FileSaver from 'file-saver'
+import * as FileSaver from 'file-saver-es'
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -13,31 +13,34 @@ export class AppComponent implements OnInit, OnDestroy {
 
   title = 'Vehicle Management App';
   private completeSubscription: Subscription;
-  private errorSubscription: Subscription;
+  public userName: string
 
-  constructor(private websocketService: WebsocketService, private notifierService: NotifierService) { }
+  constructor(private websocketService: WebsocketService, private notifierService: NotifierService) {
+    this.userName = this.websocketService.userName;
+  }
 
   ngOnInit(): void {
 
-    this.completeSubscription = this.websocketService.listen("complete").subscribe((data) => {
-      this.notifierService.notify("success", "File is Ready. It will Start Downloading Shortly")
-      let blob = new Blob([data.blob], { type: 'text/csv' });
-      FileSaver.saveAs(blob, data.name);
-    });
+    this.completeSubscription = this.websocketService.listen(this.userName).subscribe((data) => {
 
-    this.errorSubscription = this.websocketService.listen("errorComplete").subscribe((data) => {
-      this.notifierService.notify("error", data)
+      if (data.status === "success") {
+        this.notifierService.notify("success", "File is Ready. It will Start Downloading Shortly");
+        let blob = new Blob([data.blob], { type: 'text/csv' });
+        FileSaver.saveAs(blob, data.name);
+      } else {
+        this.notifierService.notify("error", data.errorName);
+      }
+
     });
 
   }
 
   ngOnDestroy(): void {
+
     if (this.completeSubscription) {
       this.completeSubscription.unsubscribe();
     }
-    if (this.errorSubscription) {
-      this.errorSubscription.unsubscribe();
-    }
+
   }
 
 }
