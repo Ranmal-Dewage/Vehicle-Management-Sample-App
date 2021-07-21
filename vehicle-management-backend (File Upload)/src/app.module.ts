@@ -1,17 +1,11 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TypeOrmModule } from "@nestjs/typeorm";
-import { config } from './ormconfig';
-import { Vehicle } from './entities/vehicle.entity';
 import { BullModule } from '@nestjs/bull'
 import { FileProducer } from './queue/file.producer';
-import { FileConsumer } from './queue/file.consumer';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(config),
-    TypeOrmModule.forFeature([Vehicle]),
     BullModule.forRoot({
       redis: {
         host: 'localhost',
@@ -23,6 +17,6 @@ import { FileConsumer } from './queue/file.consumer';
     })
   ],
   controllers: [AppController],
-  providers: [AppService, FileProducer, FileConsumer],
+  providers: [AppService, FileProducer],
 })
 export class AppModule { }

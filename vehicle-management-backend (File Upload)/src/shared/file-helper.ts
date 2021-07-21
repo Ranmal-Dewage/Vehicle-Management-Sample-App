@@ -8,7 +8,7 @@ export class FileHelper {
         customFile = customFile + "_" + Date.now() + '_' + Math.round(Math.random() * 1e9);
 
         let fileExtension: string;
-        if (file.mimetype === 'application/vnd.ms-excel') {
+        if (file.mimetype === 'application/vnd.ms-excel' || file.mimetype === 'text/csv') {
             fileExtension = '.csv';
         } else if (file.mimetype === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
             fileExtension = '.xlsx';

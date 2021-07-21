@@ -6,7 +6,6 @@ import { FileHelper } from './shared/file-helper';
 import * as fs from 'fs';
 import { FileProducer } from './queue/file.producer';
 
-
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService, private fileProducer: FileProducer) { }
