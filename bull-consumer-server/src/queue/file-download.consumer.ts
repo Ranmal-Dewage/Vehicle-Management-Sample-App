@@ -1,7 +1,7 @@
 import { Process, Processor } from "@nestjs/bull";
 import { Job } from "bull";
 import { AppService } from "src/app.service";
-import { Vehicle } from "src/model/vehicle.model";
+import { Vehicle } from "src/entities/vehicle.entity";
 import * as socketClusterClient from "socketcluster-client"
 
 @Processor('file-download')
